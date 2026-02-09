@@ -153,25 +153,27 @@ function handleAnswer(selectedOption) {
 
 
 
-function sendQuizEmail() {
+async function sendQuizEmail() {
   const messageBody = answersChosen.join("\n");
 
   const templateParams = {
     quiz_answers: messageBody
   };
 
-  // 🔥 Send email in background (do NOT wait)
-  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
-    .then(() => {
-      console.log("Quiz email sent ❤️");
-    })
-    .catch(err => {
-      console.error("Email failed:", err);
-    });
+  try {
+    // ⏳ WAIT for email to finish (CRITICAL for mobile)
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+    console.log("Quiz email sent ❤️");
+  } catch (err) {
+    console.error("Email failed:", err);
+  }
 
-  // 🚀 Instant redirect to gifts page
-  window.location.href = "gifts.html";
+  // ⏱️ Small delay for safety (mobile browsers)
+  setTimeout(() => {
+    window.location.href = "gifts.html";
+  }, 300);
 }
+
 
 
 
