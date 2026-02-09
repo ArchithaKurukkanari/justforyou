@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Letter For You 💖</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="letter-page">
+
+  <div class="letter-container">
+
+    <!-- 💌 ENVELOPE -->
+    <div id="envelope" class="envelope" onclick="openLetter()">
+      <div class="envelope-top"></div>
+      <div class="envelope-body">💌</div>
+    </div>
+
+    <!-- 📜 LETTER -->
+    <div id="letterCard" class="letter-card hidden">
+
+      <h2 class="letter-title">A Letter For You 🥺</h2>
+
+      <div class="letter-paper">
+        <img 
+          src="assets/photos/10.jpeg" 
+          alt="Us" 
+          class="letter-photo"
+        >
+
+        <p class="letter-text">
+          Thank you for coming into my life and staying.<br>
+          You make my life brighter in the simplest, quietest ways. 💗❤️
+        </p>
+          
+        
+      </div>
+
+      <button class="primary-btn" onclick="window.location.href='gifts.html'">
+        Back 🎁
+      </button>
+
+    </div>
+
+  </div>
+
+    <script>
+        function openLetter() {
+          document.getElementById("envelope").classList.add("open");
+          startHearts();
+        
+          setTimeout(() => {
+            document.getElementById("envelope").style.display = "none";
+            document.getElementById("letterCard").classList.remove("hidden");
+          }, 800);
+        }
+    
+        function startHearts() {
+          for (let i = 0; i < 20; i++) {
+            createHeart();
+          }
+        }
+    
+        function createHeart() {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerText = ["💖","💕","💗","💓","💘"][Math.floor(Math.random() * 5)];
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+        
+          document.body.appendChild(heart);
+        
+          setTimeout(() => {
+            heart.remove();
+          }, 12000);
+        }
+    </script>
+
+
+</body>
+</html>
