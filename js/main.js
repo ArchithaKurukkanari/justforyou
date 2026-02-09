@@ -32,3 +32,4 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   window.location.href = "valentines.html";
 });
+
